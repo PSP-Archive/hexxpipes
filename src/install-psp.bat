@@ -1,0 +1,13 @@
+copy "..\snd\music\AA_ION.IT" "hexxpipes"
+copy "..\gfx\fonts\gara.ttf" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg00.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg01.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg02.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg03.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg04.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg05.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg06.png" "hexxpipes"
+copy "..\gfx\backgrounds\hexxbg07.png" "hexxpipes"
+
+copy "hexxpipes%%\*" "E:\PSP\GAME\HEXXPI~1%\"
+copy "hexxpipes\*" "E:\PSP\GAME\HEXXPIPES                       1\"

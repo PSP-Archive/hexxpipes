@@ -1,0 +1,29 @@
+TARGET = hexxpipes
+#PRX_EXPORTS=exports.exp 
+#BUILD_PRX=1
+OBJS = hexxpipes.o PSP/pspInit.o PSP/pspHelper.o common/messagetext.o \
+	common/gfxcore.o PSP/pspSound.o PSP/pspGfx.o logo.o \
+	common/freetypetools.o
+
+CFLAGS = -O2 -G0 -Wall
+LIBS = -ljpeg -lpspgum -lpspgu -lmikmod -lpspaudio -lpng -lz -lm \
+	$(shell /usr/local/pspdev/psp/bin/freetype-config --libs)
+	
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti -fno-strict-aliasing 
+ASFLAGS = $(CFLAGS)
+
+EXTRA_TARGETS = EBOOT.PBP
+PSP_EBOOT_TITLE = HexxPipes
+PSP_EBOOT_ICON = ../gfx/ICON0.PNG
+PSP_EBOOT_PIC1 = ../gfx/PIC1.PNG
+
+PSPSDK= $(shell psp-config --pspsdk-path)
+PSPDIR= $(shell psp-config --psp-prefix)
+
+# this one is used to include the freetype2 headers into our path
+INCDIR = $(PSPDIR)/include/freetype2
+
+include $(PSPSDK)/lib/build.mak
+
+logo.o: PSP/logo.raw
+	bin2o -i PSP/logo.raw logo.o logo 

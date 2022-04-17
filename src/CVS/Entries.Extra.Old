@@ -1,0 +1,14 @@
+/Makefile.PSP////*////
+/compile.txt////*////
+/exports.exp////*////
+/hexxpipes.c////*////
+/hexxpipes.dev////*////
+/hexxpipes.h////*////
+/install-psp-eboot-only.bat////*////
+/install-psp-prx-only.bat////*////
+/install-psp.bat////*////
+/messages.txt////*////
+D/PSP////////
+D/common////////
+D/png////////
+D/win32////////

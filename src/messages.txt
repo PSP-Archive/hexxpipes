@@ -1,0 +1,18 @@
+# Language file for 'hexxpipes'
+#
+# This file contains every text which is going to be shown to the user.
+# It should be easily possible to create multiple language sets with this file.
+#
+# Comments start with a '#' and end with end of line
+#
+# Sample entry:
+# [MESSAGE_IDENTIFIER_STRING]
+# {Text in language 0|Text in language 1
+# second line of text for language 1|Text in language 2}
+#
+# To keep the code simple, '{', '|' and '}' are not allowed inside of messages.
+
+[SoundInitFailed]
+{MikMod: Unable to initialize sound, reason: %s|MikMod: Konnte Sound nicht initialisieren, Grund: %s}
+[SoundCreateThreadFailed]
+{MikMod: Failed to create audio channel thread.|MikMod: Der Thread für die Soundausgabe konnte nicht angelegt werden.}

@@ -1,0 +1,105 @@
+Compile issues
+--------------
+
+To edit & compile the whole thing we use DevCpp 4.9.9.2.
+
+(1) Win32
+
+For the Win32 platform we use DevCpp's builtin toolchain for Win32. We change
+the target in "Project/Project Options/Compiler" to "default", so it will
+create a Windows executable.
+
+You have to install several libraries. Get the following files (do not use the
+packages provided by dev-cpp):
+http://prdownloads.sourceforge.net/gnuwin32/freetype-2.1.8-lib.zip
+http://prdownloads.sourceforge.net/gnuwin32/libpng-1.2.8-lib.zip
+http://prdownloads.sourceforge.net/gnuwin32/zlib-1.2.3-lib.zip
+http://prdownloads.sourceforge.net/gnuwin32/libjpeg-6b-lib.zip
+http://prdownloads.sourceforge.net/dumb/dumb-0.9.3.zip
+
+For freetype, libpng, zlib and libjpeg copy the contents of the "lib" folders
+to your dev-cpp/lib/ folder. IMPORTANT: Delete the files lib*.dll.a which come
+from freetype, libpng, zlib and libjpeg. Otherwise the linker will always use
+them and you need to have the corresponding dll files as well in your path.
+
+Also extract the contents of the freetype, libpng, zlib and libjepg "include"
+folders to dev-cpp/include. To be able to compile the freetype headers you will
+have to add the folder "dev-dpp\include\freetype2" to your global c++ include
+path (see tools/compiler options).
+
+For OpenGL support you need the package "freeglut". Use dev-cpp's "tools->check
+for updates" and install freeglut. At the same time you also should update the
+packages for binutils, gcc-core, gcc-g++, dev-cpp map file, dev-cpp help file,
+gnu debugger, gnu make, mingw runtime and windows32 api to their newest
+versions.
+
+=======
+DUMB
+1. decrunch it
+2. use a shell an go to the folder
+3. make sure that the devcpp/bin folder is added to the path
+4. make sure that the environment variable MINGDIR is set to the same folder
+5. type: make config
+6. answer to compile for mingw
+7. type: make
+8. copy the dumb include diriectory to the folder devcpp/include/dumb
+9. copy the dumb lib/mingwdir to the forlder devcpp/lib
+
+To Use 
+-- open --
+include header files into win32 project
+
+
+(2) PSP
+
+You need to have the PSPSDK and the PSP toolchain ready in the Cygwin
+environment. A good way to start is described on
+http://www.scriptscribbler.com/psp/tutorials/lesson01.htm
+
+DevCpp has to be set up not to use its internal compiler but the makefile. To
+do this, have a look at
+http://www.cs.purdue.edu/homes/ljbuesch/
+There you'll find the info needed.
+
+To compile the needed libraries do this (you have to have svn installed - check
+this in your cygwin setup) in your cygwin shell:
+
+mkdir libcompile
+cd libcompile
+svn checkout svn://svn.ps2dev.org/psp/trunk/libpng
+svn checkout svn://svn.ps2dev.org/psp/trunk/mikmodlib
+svn checkout svn://svn.ps2dev.org/psp/trunk/zlib
+svn checkout svn://svn.ps2dev.org/psp/trunk/jpeg
+svn checkout svn://svn.ps2dev.org/psp/trunk/freetype
+
+cd zlib
+make
+make install
+cd ..
+
+cd libpng
+make
+make install
+cd ..
+
+cd jpeg
+make
+make install
+cd ..
+
+cd mikmodlib
+make install
+cd ..
+
+cd freetype
+sh autogen.sh
+LDFLAGS="-L`psp-config --pspsdk-path`/lib -lc -lpspuser" \
+   ./configure --host psp --prefix=`psp-config --psp-prefix`
+make
+make install
+cd ..
+
+
+To make it possible for the make command to work in the cygwin environment you
+will have to place your source code files in your cygwin home directory
+(e. g. c:\cygwin\home\username\projects\hexxpipes).
